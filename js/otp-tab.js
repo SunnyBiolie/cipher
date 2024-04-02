@@ -5,10 +5,16 @@ const encryptBtnOTP = $("#encrypt-btn-otp");
 const resFromEncryptOTP = $(".res-from-en-otp");
 const encryptResOTP = $("#encrypt-result-otp");
 
+encryptInputMessOTP.onkeydown = (e) => {
+  if (e.code === "Space") e.preventDefault();
+};
 encryptInputMessOTP.oninput = (e) => {
   encryptInputMessOTP.value = e.target.value.toLowerCase();
 };
 
+encryptInputKeyOTP.onkeydown = (e) => {
+  if (e.code === "Space") e.preventDefault();
+};
 encryptInputKeyOTP.oninput = (e) => {
   encryptInputKeyOTP.value = e.target.value.toUpperCase();
 };
@@ -50,17 +56,23 @@ const copyEncryptResOTP = () => {
   navigator.clipboard.writeText(encryptResOTP.innerHTML);
 };
 
-// Decrypt
+// Decrypt:
 
 const decryptInputMessOTP = $("#decrypt-input-mess-otp");
 const decryptInputKeyOTP = $("#decrypt-input-key-otp");
 const decryptBtnOTP = $("#decrypt-btn-otp");
 const decryptResOTP = $("#decrypt-result-otp");
 
+decryptInputMessOTP.onkeydown = (e) => {
+  if (e.code === "Space") e.preventDefault();
+};
 decryptInputMessOTP.oninput = (e) => {
   decryptInputMessOTP.value = e.target.value.toUpperCase();
 };
 
+decryptInputKeyOTP.onkeydown = (e) => {
+  if (e.code === "Space") e.preventDefault();
+};
 decryptInputKeyOTP.oninput = (e) => {
   decryptInputKeyOTP.value = e.target.value.toUpperCase();
 };

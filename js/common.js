@@ -34,7 +34,7 @@ copyBtns.forEach((element) => {
 });
 
 const init = () => {
-  setActiveTab(1);
+  setActiveTab(0);
 
   setValidEncryptBtnMono(false);
   setShowEncryptResMono(false);
