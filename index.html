@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An ninh thông tin</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="w-screen h-screen text-neutral-100 bg-gradient-to-br from-slate-800 to-neutral-900 flex flex-col items-center justify-between"
+  >
+    <div class="flex items-center gap-x-4 my-8">
+      <button
+        id="select-btn-0"
+        class="py-3 px-4 hover:bg-neutral-500/50 rounded-sm transition font-medium"
+        onclick="setActiveTab(0)"
+      >
+        Mã hóa đơn bảng
+      </button>
+      <button
+        id="select-btn-1"
+        class="py-3 px-4 hover:bg-neutral-500/50 rounded-sm transition font-medium"
+        onclick="setActiveTab(1)"
+      >
+        One Time Pad
+      </button>
+    </div>
+    <div
+      class="flex-1 lg:w-1/2 md:w-2/3 w-3/4 flex flex-col items-center justify-center gap-y-4"
+    >
+      <!-- Mã hóa đơn bảng -->
+      <section
+        id="tab-container-mono"
+        style="display: none"
+        class="w-full space-y-4"
+      >
+        <!-- Encrypt -->
+        <div
+          class="w-full p-4 rounded-md text-slate-900 bg-slate-100 shadow-md space-y-4"
+        >
+          <div class="flex items-center gap-x-2">
+            <input
+              id="encrypt-input-mono"
+              type="text"
+              class="w-full p-2 rounded-md bg-slate-100 border"
+              placeholder="Message"
+            />
+            <button
+              id="encrypt-btn-mono"
+              class="shrink-0 py-2 px-3 text-sm text-neutral-100 bg-neutral-900 rounded-md"
+              onclick="encryptBtnMonoOnClick()"
+            >
+              Encrypt
+            </button>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <div class="font-medium">Result:</div>
+            <div
+              class="res-from-en-mono bg-slate-500/10 flex items-center gap-x-3 py-1 pl-2 pr-1 rounded-md"
+            >
+              <div id="encrypt-result-mono"></div>
+              <button
+                class="copy-btn flex items-center justify-center p-2 -m-1 cursor-pointer hover:bg-neutral-500/10 rounded-md font-medium text-sm"
+                onclick="copyResultMono()"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <div class="font-medium">Key:</div>
+            <div
+              class="res-from-en-mono bg-slate-500/10 flex items-center gap-x-3 py-1 pl-2 pr-1 rounded-md"
+            >
+              <div id="encrypt-key-mono"></div>
+              <button
+                class="copy-btn flex items-center justify-center p-2 -m-1 cursor-pointer hover:bg-neutral-500/10 rounded-md font-medium text-sm"
+                onclick="copyKeyMono()"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Decrypt -->
+        <div
+          class="w-full p-4 rounded-md text-slate-900 bg-slate-100 shadow-md space-y-4"
+        >
+          <div class="flex items-center gap-x-2">
+            <input
+              id="decrypt-input-mono"
+              type="text"
+              class="w-full p-2 rounded-md bg-slate-100 border"
+              placeholder="Message"
+            />
+            <input
+              id="decrypt-key-mono"
+              type="text"
+              class="w-full p-2 rounded-md bg-slate-100 border"
+              placeholder="Key"
+            />
+            <button
+              id="decrypt-btn-0"
+              class="shrink-0 py-2 px-3 text-sm text-neutral-100 bg-neutral-900 rounded-md"
+              onclick="decryptBtnMonoOnClick()"
+            >
+              Decrypt
+            </button>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <div class="font-medium">Result:</div>
+            <div
+              class="res-from-de-mono bg-slate-500/10 flex items-center gap-x-2 py-1 px-2 rounded-sm"
+            >
+              <div id="decrypt-result-mono"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- One Time Pad -->
+      <section
+        id="tab-container-otp"
+        style="display: none"
+        class="w-full space-y-4"
+      >
+        <!-- Encrypt -->
+        <div
+          class="w-full p-4 rounded-md text-slate-900 bg-slate-100 shadow-md space-y-4"
+        >
+          <div class="flex items-center gap-x-2">
+            <input
+              id="encrypt-input-mess-otp"
+              type="text"
+              class="w-full p-2 rounded-md bg-slate-100 border"
+              placeholder="Message"
+            />
+            <div
+              class="w-full rounded-md border flex items-center pr-1 overflow-hidden focus-within:outline focus-within:outline-offset-[-2px] focus-within:outline-2 focus-within:outline-slate-900"
+            >
+              <input
+                id="encrypt-input-key-otp"
+                type="text"
+                class="w-full p-2 bg-slate-100 focus:outline-0"
+                placeholder="Key"
+              />
+              <button
+                class="copy-btn flex items-center justify-center p-3 -m-1 cursor-pointer hover:bg-neutral-500/10 rounded-md font-medium text-sm"
+                onclick="copyKeyOTP()"
+              >
+                Copy
+              </button>
+            </div>
+            <button
+              id="encrypt-btn-otp"
+              class="shrink-0 py-2 px-3 text-sm text-neutral-100 bg-neutral-900 rounded-md"
+              onclick="encryptBtnOTPOnClick()"
+            >
+              Encrypt
+            </button>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <div class="font-medium">Result:</div>
+            <div
+              class="res-from-en-otp bg-slate-500/10 flex items-center gap-x-3 py-1 pl-2 pr-1 rounded-md"
+            >
+              <div id="encrypt-result-otp"></div>
+              <button
+                class="copy-btn flex items-center justify-center p-2 -m-1 cursor-pointer hover:bg-neutral-500/10 rounded-md font-medium text-sm"
+                onclick="copyEncryptResOTP()"
+              >
+                Copy
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Decrypt -->
+        <div
+          class="w-full p-4 rounded-md text-slate-900 bg-slate-100 shadow-md space-y-4"
+        >
+          <div class="flex items-center gap-x-2">
+            <input
+              id="decrypt-input-mess-otp"
+              type="text"
+              class="w-full p-2 rounded-md bg-slate-100 border"
+              placeholder="Message"
+            />
+            <input
+              id="decrypt-input-key-otp"
+              type="text"
+              class="w-full p-2 rounded-md bg-slate-100 border"
+              placeholder="Key"
+            />
+            <button
+              id="decrypt-btn-otp"
+              class="shrink-0 py-2 px-3 text-sm text-neutral-100 bg-neutral-900 rounded-md"
+              onclick="decryptBtnOTPOnClick()"
+            >
+              Decrypt
+            </button>
+          </div>
+          <div class="flex items-center gap-x-2">
+            <div class="font-medium">Result:</div>
+            <div
+              class="res-from-de-otp bg-slate-500/10 flex items-center gap-x-2 py-1 px-2 rounded-sm"
+            >
+              <div id="decrypt-result-otp"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+
+  <script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+  </script>
+  <script src="./cipher/MonoAlphabetic.js"></script>
+  <script src="./cipher/OneTimePad.js"></script>
+  <script src="./js/mono-tab.js"></script>
+  <script src="./js/otp-tab.js"></script>
+  <script src="./js/common.js"></script>
+</html>
