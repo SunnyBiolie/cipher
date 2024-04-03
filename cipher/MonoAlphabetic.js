@@ -43,6 +43,7 @@ const genRandKey = () => {
 
   for (let i = 0; i <= 25; i++) {
     const randIndex = getRandomNumberInRange(0, lettersArray.length - 1);
+    console.log(`K thứ ${i + 1}:`, randIndex);
     randomKey += lettersArray[randIndex];
     lettersArray.splice(randIndex, 1);
   }
