@@ -23,7 +23,11 @@ const encryptBtnOTPOnClick = () => {
   const message = encryptInputMessOTP.value;
   const key = encryptInputKeyOTP.value;
 
-  const { success, result } = oneTimePad(key, message, "encrypt");
+  const {
+    success,
+    key: validKey,
+    result,
+  } = oneTimePad(key, message, "encrypt");
 
   encryptResOTP.innerHTML = result;
 
@@ -32,6 +36,7 @@ const encryptBtnOTPOnClick = () => {
     resFromEncryptOTP.classList.remove("pr-1");
     resFromEncryptOTP.classList.add("pr-2");
   } else {
+    encryptInputKeyOTP.value = validKey;
     resFromEncryptOTP.querySelector(".copy-btn").classList.remove("hidden");
     resFromEncryptOTP.classList.add("pr-1");
     resFromEncryptOTP.classList.remove("pr-2");
@@ -54,6 +59,21 @@ const copyKeyOTP = () => {
 
 const copyEncryptResOTP = () => {
   navigator.clipboard.writeText(encryptResOTP.innerHTML);
+};
+
+const enNoteBtnOTP = $("#en-note-btn-otp");
+const encryptNoteOTP = $("#encrypt-note-otp");
+
+let isShow = true;
+const toggleShowEncryptNotes = () => {
+  isShow = !isShow;
+  if (isShow) {
+    enNoteBtnOTP.querySelector("span").innerText = "Hide Notes";
+    encryptNoteOTP.classList.remove("hidden");
+  } else {
+    enNoteBtnOTP.querySelector("span").innerText = "Show notes";
+    encryptNoteOTP.classList.add("hidden");
+  }
 };
 
 // Decrypt:
@@ -81,8 +101,9 @@ const decryptBtnOTPOnClick = () => {
   const message = decryptInputMessOTP.value;
   const key = decryptInputKeyOTP.value;
 
-  const { success, result } = oneTimePad(key, message, "decrypt");
+  const { key: validKey, result } = oneTimePad(key, message, "decrypt");
 
+  decryptInputKeyOTP.value = validKey;
   decryptResOTP.innerHTML = result;
 
   setShowDecryptResOTP(true);

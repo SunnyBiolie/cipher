@@ -26,6 +26,7 @@
         One Time Pad
       </button>
     </div>
+
     <div
       class="flex-1 lg:w-1/2 md:w-2/3 w-3/4 flex flex-col items-center justify-center gap-y-4"
     >
@@ -125,6 +126,38 @@
         style="display: none"
         class="w-full space-y-4"
       >
+        <div class="flex flex-col items-center justify-center gap-y-2">
+          <div
+            id="en-note-btn-otp"
+            class="w-fit flex items-center gap-x-2 bg-slate-200 py-1 px-2 rounded-md cursor-pointer hover:bg-slate-200/80"
+            onclick="toggleShowEncryptNotes()"
+          >
+            <span class="font-medium text-slate-900">Hide notes</span>
+          </div>
+          <div id="encrypt-note-otp" class="text-sm">
+            <div>Khi nhấn <span class="font-medium">Encrypt</span>:</div>
+            <ul class="pl-2">
+              <li>
+                - Với chiều dài <span class="font-medium">key</span> lớn hơn
+                <span class="font-medium">message</span>,
+                <span class="font-medium">key</span> sẽ tự động được ngắt với độ
+                dài bằng <span class="font-medium">message</span>.
+              </li>
+              <li>
+                - Với chiều dài <span class="font-medium">key</span> nhỏ hơn
+                <span class="font-medium">message</span>,
+                <span class="font-medium">key</span> sẽ tự động được lặp bởi
+                chính nó cho đến khi độ dài bằng
+                <span class="font-medium">message</span>.
+              </li>
+            </ul>
+            <div>
+              Tương tự như vậy ở phần
+              <span class="font-medium">Decrypt</span> bên dưới.
+            </div>
+          </div>
+        </div>
+
         <!-- Encrypt -->
         <div
           class="w-full p-4 rounded-md text-slate-900 bg-slate-100 shadow-md space-y-4"

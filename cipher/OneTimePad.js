@@ -19,14 +19,24 @@ const oneTimePad = (key, message, type) => {
       result: "Invalid key!",
     };
 
-  if (key.length < message.length)
-    return {
-      success: false,
-      result: "Length of key must be more than or equal to message!",
-    };
+  if (key.length < message.length) {
+    message = message.toUpperCase();
+    const ratio = Math.ceil(message.length / key.length);
+    for (let i = 1; i < ratio; i++) {
+      key += key;
+    }
+    console.log(ratio);
 
-  key = key.toUpperCase();
-  message = message.toUpperCase();
+    if (key.length > message.length) {
+      key = key.substring(0, message.length);
+    }
+  } else if (key.length > message.length) {
+    message = message.toUpperCase();
+    key = key.substring(0, message.length);
+  } else {
+    key = key.toUpperCase();
+    message = message.toUpperCase();
+  }
 
   let result = "";
 
@@ -61,6 +71,7 @@ const oneTimePad = (key, message, type) => {
 
   return {
     success: true,
+    key: key,
     result: type === "encrypt" ? result.toUpperCase() : result.toLowerCase(),
   };
 };
